@@ -2,6 +2,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { fetchPosts } from "../../store/slices/post-slice";
 import { useEffect } from "react";
 import useToggle from "../../hooks/useToggle";
+import { postActions } from "../../store/slices/post-slice";
 import Post from "./components/Post";
 import NewPost from "./components/NewPost";
 const Posts = () => {
@@ -19,13 +20,19 @@ const Posts = () => {
   return (
     <>
       <h2>Posts Page</h2>
+      <button onClick={() => dispatch(postActions.resetPost())}>
+        Reset Post
+      </button>
       {value ? (
         <NewPost toggle={toggle} />
       ) : (
         <button onClick={toggle}>Create Post</button>
       )}
-      {post.items &&
-        post.items.map((item) => <Post key={item.id} post={item} />)}
+      {post?.items?.length > 0 ? (
+        post.items.map((item) => <Post key={item.id} post={item} />)
+      ) : (
+        <p>No Posts available</p>
+      )}
     </>
   );
 };

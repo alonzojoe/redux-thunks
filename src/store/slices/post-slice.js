@@ -6,12 +6,34 @@ export const fetchPosts = createAsyncThunk("fetchPosts", async () => {
   return response.data.posts;
 });
 
+const initialState = {
+  items: [],
+  isLoading: false,
+  error: null,
+};
+
+const RANDOM_ID = crypto.randomUUID();
+const LOGGED_USER_ID = 7;
+
 const postSlice = createSlice({
   name: "post",
-  initialState: {
-    items: null,
-    isLoading: false,
-    error: null,
+  initialState,
+  reducers: {
+    resetPost(state) {
+      state.items = initialState.items;
+      state.isLoading = initialState.isLoading;
+      state.error = initialState.error;
+    },
+    createPost(state, action) {
+      const newPost = action.payload.post;
+
+      state.items.push({
+        id: RANDOM_ID,
+        title: newPost.title,
+        body: newPost.body,
+        userId: LOGGED_USER_ID,
+      });
+    },
   },
   extraReducers(builder) {
     builder
@@ -30,4 +52,5 @@ const postSlice = createSlice({
   },
 });
 
+export const postActions = postSlice.actions;
 export default postSlice;
