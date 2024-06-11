@@ -6,7 +6,7 @@ const AppLayout = () => {
   return (
     <>
       <Navbar />
-      <main>
+      <main style={{ marginTop: "100px" }}>
         <Outlet />
       </main>
     </>

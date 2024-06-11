@@ -1,10 +1,13 @@
-
-const Post = () => {
+const Post = ({ post }) => {
   return (
-    <div>
-      
-    </div>
-  )
-}
+    <>
+      <h3>
+        {post.id} {post.title}
+      </h3>
+      <p>{post.body}</p>
+      <hr />
+    </>
+  );
+};
 
-export default Post
+export default Post;

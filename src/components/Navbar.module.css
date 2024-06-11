@@ -13,9 +13,13 @@
 .links {
   display: flex;
   align-items: center;
-  gap: 5px;
+  gap: 10px;
 }
 
 .links a {
   font-size: 18px;
+}
+
+.links .active {
+  color: #f24e4e;
 }

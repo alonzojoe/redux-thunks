@@ -3,7 +3,7 @@ import api from "../../api";
 
 export const fetchPosts = createAsyncThunk("fetchPosts", async () => {
   const response = await api.get("/posts");
-  return response.data;
+  return response.data.posts;
 });
 
 const postSlice = createSlice({

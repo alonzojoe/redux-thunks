@@ -5,8 +5,18 @@ const Navbar = () => {
     <nav className={classes.nav}>
       <h4>Redux Thunks</h4>
       <div className={classes.links}>
-        <NavLink to="">Posts</NavLink>
-        <NavLink to="/todos">Todos</NavLink>
+        <NavLink
+          className={({ isActive }) => (isActive ? classes.active : null)}
+          to=""
+        >
+          Posts
+        </NavLink>
+        <NavLink
+          className={({ isActive }) => (isActive ? classes.active : null)}
+          to="/todos"
+        >
+          Todos
+        </NavLink>
       </div>
     </nav>
   );
