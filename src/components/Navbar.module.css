@@ -1,0 +1,21 @@
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: 8px 20px;
+  background: #2b2e3a;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.links {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.links a {
+  font-size: 18px;
+}
