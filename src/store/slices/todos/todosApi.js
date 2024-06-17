@@ -10,7 +10,21 @@ export const todosApi = createApi({
     getAllTodo: builder.query({
       query: () => "/todos",
     }),
+    getTodoById: builder.query({
+      query: (id) => `/todos/${id}`,
+    }),
+
+    addNewTodo: builder.mutation({
+      query: (newTodo) => ({
+        url: "/todos/add",
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: newTodo,
+      }),
+    }),
   }),
 });
 
-export const { useGetAllTodoQuery } = todosApi;
+export const { useGetAllTodoQuery, useGetTodoByIdQuery, useAddNewTodoMutation } = todosApi;

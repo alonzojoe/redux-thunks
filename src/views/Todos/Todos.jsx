@@ -1,14 +1,31 @@
-import React from "react";
+import { useEffect } from "react";
 import { useGetAllTodoQuery } from "../../store/slices/todos/todosApi";
+import Todo from "./components/Todo";
+import toast from "react-hot-toast";
 
 const Todos = () => {
-  const res = useGetAllTodoQuery();
+  const { data, error, isError, isLoading, isSuccess } = useGetAllTodoQuery();
 
-  console.log("res", res);
+  useEffect(() => {
+    if (isSuccess) {
+      toast("Todos Loaded!", {
+        duration: 4000,
+        position: "top-center",
+        icon: "✅",
+      });
+    }
+  }, [isSuccess]);
 
-  if (res.status.pending) return <p>Loading Todos...</p>;
+  if (isLoading) return <h1>Loading Todos...</h1>;
+  if (isError) return <p>An Error occured: {error.data}</p>;
 
-  return <h2>Todos Page</h2>;
+  return (
+    <>
+      {data?.todos.map((todo) => (
+        <Todo todo={todo} key={todo.id} />
+      ))}
+    </>
+  );
 };
 
 export default Todos;
