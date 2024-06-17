@@ -1,13 +1,13 @@
 import { useSelector, useDispatch } from "react-redux";
-import { fetchPosts } from "../../store/slices/post-slice";
+import { fetchPosts } from "../../store/slices/posts/postSlice";
 import { useEffect } from "react";
 import useToggle from "../../hooks/useToggle";
-import { postActions } from "../../store/slices/post-slice";
+import { postActions } from "../../store/slices/posts/postSlice";
 import Post from "./components/Post";
 import NewPost from "./components/NewPost";
 const Posts = () => {
   const dispatch = useDispatch();
-  const post = useSelector((state) => state.post);
+  const post = useSelector((state) => state.posts);
 
   const [value, toggle] = useToggle(false);
 

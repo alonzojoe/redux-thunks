@@ -1,6 +1,6 @@
 import { useRef } from "react";
 import { useDispatch } from "react-redux";
-import { postActions } from "../../../store/slices/post-slice";
+import { postActions } from "../../../store/slices/posts/postSlice";
 
 const NewPost = ({ toggle }) => {
   const dispatch = useDispatch();

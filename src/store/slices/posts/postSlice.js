@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import api from "../../api";
+import api from "../../../api";
 
 export const fetchPosts = createAsyncThunk("fetchPosts", async () => {
   const response = await api.get("/posts");
@@ -14,8 +14,8 @@ const initialState = {
 
 const LOGGED_USER_ID = 7;
 
-const postSlice = createSlice({
-  name: "post",
+const postsSlice = createSlice({
+  name: "posts",
   initialState,
   reducers: {
     resetPost(state) {
@@ -51,5 +51,5 @@ const postSlice = createSlice({
   },
 });
 
-export const postActions = postSlice.actions;
-export default postSlice.reducer;
+export const postActions = postsSlice.actions;
+export default postsSlice.reducer;
