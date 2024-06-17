@@ -12,7 +12,6 @@ const initialState = {
   error: null,
 };
 
-const RANDOM_ID = crypto.randomUUID();
 const LOGGED_USER_ID = 7;
 
 const postSlice = createSlice({
@@ -28,7 +27,7 @@ const postSlice = createSlice({
       const newPost = action.payload.post;
 
       state.items.push({
-        id: RANDOM_ID,
+        id: crypto.randomUUID().toString().slice(25),
         title: newPost.title,
         body: newPost.body,
         userId: LOGGED_USER_ID,
@@ -53,4 +52,4 @@ const postSlice = createSlice({
 });
 
 export const postActions = postSlice.actions;
-export default postSlice;
+export default postSlice.reducer;

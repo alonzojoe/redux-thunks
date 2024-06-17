@@ -21,6 +21,7 @@ const NewPost = ({ toggle }) => {
     );
     title.current.value = "";
     body.current.value = "";
+    toggle(false);
   };
 
   return (
