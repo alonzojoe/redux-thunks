@@ -6,30 +6,48 @@ const LOGGED_USER_ID = 7;
 const NewTodo = ({ toggle }) => {
   const todo = useRef(null);
 
-  const [addNewTodo, { data, isError, isLoading, error, isSuccess }] =
-    useAddNewTodoMutation();
+  const [addNewTodo, { data, isLoading, error }] = useAddNewTodoMutation();
+
+  if (error) return <p>Error: {error}</p>;
 
   const submitHandler = async (e) => {
     e.preventDefault();
     if (todo.current.value.trim() === "") return;
 
-    await addNewTodo({});
+    const newTodo = {
+      todo: todo.current.value,
+      completed: false,
+      userId: LOGGED_USER_ID,
+    };
 
-    if (isError) toast(`Error: ${error.data}`);
+    try {
+      await addNewTodo(newTodo);
+    } catch (err) {
+      toast(`An Error Ocuured: ${err}`);
+    } finally {
+      todo.current.value = "";
+    }
   };
   return (
-    <form onSubmit={submitHandler}>
-      <div>
-        <label htmlFor="title">New Todo</label>:{" "}
-        <input ref={todo} id="title" type="text" required />
-      </div>
-      <br />
-      <br />
-      <button style={{ marginRight: "5px" }} disabled={isLoading}>
-        {isLoading ? "Creating New Todo..." : "Create"}
-      </button>
-      <button onClick={() => toggle(false)}>Cancel</button>
-    </form>
+    <>
+      <h2>
+        {data?.id} {data?.todo}
+      </h2>
+      <span>Completed : {data?.completed}</span>
+      <hr />
+      <form onSubmit={submitHandler}>
+        <div>
+          <label htmlFor="title">New Todo</label>:{" "}
+          <input ref={todo} id="title" type="text" required />
+        </div>
+        <br />
+        <br />
+        <button style={{ marginRight: "5px" }} disabled={isLoading}>
+          {isLoading ? "Creating New Todo..." : "Create"}
+        </button>
+        <button onClick={() => toggle(false)}>Cancel</button>
+      </form>
+    </>
   );
 };
 

@@ -27,4 +27,8 @@ export const todosApi = createApi({
   }),
 });
 
-export const { useGetAllTodoQuery, useGetTodoByIdQuery, useAddNewTodoMutation } = todosApi;
+export const {
+  useGetAllTodoQuery,
+  useGetTodoByIdQuery,
+  useAddNewTodoMutation,
+} = todosApi;
