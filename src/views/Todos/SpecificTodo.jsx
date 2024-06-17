@@ -10,6 +10,7 @@ const SpecificTodo = () => {
   if (isError) return <h3>Error fetching single todo: {error.data}</h3>;
   return (
     <>
+      <h2>Single Todo</h2>
       <h4>
         {data.id}. {data.todo}
         <span>Completed: {data.completed ? "✅" : "❌"}</span>

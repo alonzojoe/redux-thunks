@@ -3,13 +3,12 @@ import AppLayout from "./layouts/AppLayout";
 import Posts from "./views/posts/Posts";
 import Todos from "./views/Todos/Todos";
 import SpecificTodo from "./views/Todos/SpecificTodo";
-import { Toaster } from "react-hot-toast";
+
 import "./App.css";
 
 function App() {
   return (
     <>
-      <Toaster />
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<AppLayout />}>

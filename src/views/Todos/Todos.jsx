@@ -1,11 +1,13 @@
 import { useEffect } from "react";
 import { useGetAllTodoQuery } from "../../store/slices/todos/todosApi";
 import Todo from "./components/Todo";
+import NewTodo from "./components/NewTodo";
 import toast from "react-hot-toast";
+import useToggle from "../../hooks/useToggle";
 
 const Todos = () => {
   const { data, error, isError, isLoading, isSuccess } = useGetAllTodoQuery();
-
+  const [value, toggle] = useToggle(false);
   useEffect(() => {
     if (isSuccess) {
       toast("Todos Loaded!", {
@@ -21,6 +23,13 @@ const Todos = () => {
 
   return (
     <>
+      <h2>Todos Page</h2>
+      {value ? (
+        <NewTodo toggle={toggle} />
+      ) : (
+        <button onClick={() => toggle(true)}>New Todo</button>
+      )}
+
       {data?.todos.map((todo) => (
         <Todo todo={todo} key={todo.id} />
       ))}
