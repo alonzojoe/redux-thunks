@@ -27,13 +27,17 @@ const NewTodo = ({ toggle }) => {
     } finally {
       todo.current.value = "";
     }
+
+    console.log("Returned Data:", data);
   };
   return (
     <>
-      <h2>
-        {data?.id} {data?.todo}
-      </h2>
-      <span>Completed : {data?.completed}</span>
+      {data && (
+        <h2>
+          {data.id} {data.todo} {data.completed.toString()}
+        </h2>
+      )}
+
       <hr />
       <form onSubmit={submitHandler}>
         <div>
